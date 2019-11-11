@@ -2,30 +2,29 @@
 {% load bootstrap4 %}
 {% block content %}
 <div class="container">
-    <!-- <h2 class="text-center" style="margin-top: 8%;font-family: 'Satisfy', cursive;">Welcome to Instagram</h2> -->
-<div class="row">
-  
+  <div class="row">
+
     <div class="col-md-6" style="margin-top: 10%">
-       <img src="https://stuffbyval.files.wordpress.com/2013/08/the-neighbourhood-copy.jpg" width="500" height="400" alt="">
-      
+      <img src="https://stuffbyval.files.wordpress.com/2013/08/the-neighbourhood-copy.jpg" width="500" height="400" alt="">
+
     </div>
 
-  <div class="col-md-6" style="margin-top:10%;font-family: 'Fjalla One', sans-serif;  border: 1px solid black;">
-    
-    <h3 class="text-center" style="font-family: 'Satisfy', cursive;">Sign In</h3>
-    <form  action="/accounts/login/" method="post" style="margin-top: 8%">
-      {% csrf_token %}
-      {% bootstrap_form form%}     
-      <div class="form-group">
-        <input type="submit" class="btn btn-primary btn-sm" value="Login">       
-      </div>
-      <input type="hidden" name="next" value="{{next}}">
-    </form>
-    {% if form.errors %}
-    <p> Password or Username is incorrect </p>
-    {% endif %}
-    <p>Don't have an account?? <a id="sign" href="/accounts/register/"> Sign up</a></p>
-  </div>
-</div>
+    <div class="col-md-6" style="margin-top:10%;font-family: 'Fjalla One', sans-serif;  border: 1px solid black;">
 
-{% endblock %}
+      <h3 class="text-center" style="font-family: 'Satisfy', cursive;">Sign In</h3>
+      <form action="/accounts/login/" method="post" style="margin-top: 8%">
+        {% csrf_token %}
+        {% bootstrap_form form%}
+        <div class="form-group">
+          <input type="submit" class="btn btn-primary btn-sm" value="Login">
+        </div>
+        <input type="hidden" name="next" value="{{next}}">
+      </form>
+      {% if form.errors %}
+      <p> Password or Username is incorrect </p>
+      {% endif %}
+      <p>Don't have an account?? <a id="sign" href="/accounts/register/"> Sign up</a></p>
+    </div>
+  </div>
+
+  {% endblock %}
