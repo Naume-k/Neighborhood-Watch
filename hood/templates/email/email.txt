@@ -1,0 +1,3 @@
+Hello {{user}}
+
+Welcome to the instagram. You will find the most exciting news about freins.
