@@ -1,0 +1,36 @@
+{%extends 'base.html'%} 
+{% block content %}
+
+<div class="container-fluid" style="margin-top:7%">
+    <!-- <div class="jumbotron" style="background-color:rgba(95, 158, 160, 0.575)"> -->
+        <!-- <img src="https://cdn.pixabay.com/photo/2017/02/06/11/49/city-2042634__340.png" alt="" style="width: 100%; margin-top: -150px"> -->
+    {% if businesses%}
+    <h2 class="slogan" style=" text-align: center">Found {{ businesses|length }} businesses that match "{{message}}" in all neigbourhoods!</h2>
+    {% else %}
+    <h2 class="slogan" style=" text-align: center">Found 0 businesses that matched "{{message}}"</h2>
+    {% endif %}
+  </div>
+</div>
+<div class="container" style="padding-top:3%">
+  {% if businesses %}
+    {% for business in businesses %}
+    <div class="col-md-4" style="padding:1%">
+        <div class="card border border-info" id="borderid">
+      <div style="margin:2%">
+          <br>
+          <p style="float:right"> <strong>Location:{{business.business_neighbourhood}}</strong> </p> 
+          <p class="heading">{{business.business_name}}</p>
+          <hr>
+          <p> {{business.business_description}}</p>
+          
+          <p style="float:right">{{business.business_email}}</p>
+              <p>Contact Person:{{business.contact_person}}</p>
+      </div>
+  </div>
+</div>
+    {% endfor %}
+  {% endif %}
+  
+
+</div>
+{% endblock %}
