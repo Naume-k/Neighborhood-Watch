@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: "Lato", sans-serif;
+    }
+
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: rgb(245, 238, 243);
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #000000;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+      color: #0e3b04;
+    }
+
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+
+    #main {
+      transition: margin-left .5s;
+      padding: 16px;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {
+        padding-top: 15px;
+      }
+
+      .sidenav a {
+        font-size: 18px;
+      }
+      .nav-item{
+        margin-left:85%; 
+        margin-top: -5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div style="background-color: #142e0f; color:rgb(245, 241, 241);">
+    <div class="row" style="margin-left: 50px;">
+
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="/"> home</a>
+        <!-- <a href="/logout">logout</a> -->
+
+        <a href="{%url 'new-post'%}">Create a Post</a>
+
+        <ul class="navbar-nav mr-auto">
+          {% if user.is_authenticated %}
+          {% if profile %}
+          <li class="dropdown">
+            <a class="navbar-brand" style="color:rgb(10, 10, 10)" href="" data-toggle="dropdown" role="button"></i>Businesses</a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a style="font-size:15px;" href="{%url 'new_business'%}"> Post a business </a>
+              </li>
+              <li>
+                <a style="font-size:15px;" href="{%url 'businesses'%}">Businesses</a>
+              </li>
+
+            </ul>
+
+          </li>
+          </ul>
+          {% endif %}
+          {% endif %}
+
+          <!-- <a href="#">Contact</a> -->
+      </div>
+
+
+      <div id="main">
+
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+      </div>
+
+      <form class="search text-center" style="margin-top: 1.5%; margin-left:5%;" role="search" action="{% url 'search_results' %}">
+        <input type="text" class="input-sm form-control" name="username" placeholder="Search">
+      </form>
+
+      <div style="margin-left:75%; margin-top: -6%;">
+        <!-- <li class="nav-item nav" >
+          <a class="nav-link" href="{%url 'NewProfile'%}" style="color: rgb(248, 244, 244);"><i class='far fa-user-circle' style='font-size:36px' ></i></a>
+        </li> -->
+        {% if user.is_authenticated %}
+        <ul>
+          <li class="dropdown" style="color:#142e0f;margin-left:85%; margin-top: 5%;">
+            <a class="nav-link" href="" data-toggle="dropdown" role="button"><img src="https://image.flaticon.com/icons/png/128/118/118781.png"
+                alt="" style="width:30px;height:30px;"></i></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a style="font-size:15px;" href="{%url 'NewProfile'%}">Profile</a>
+              </li>
+              <a style="font-size:15px;" href="/edit_profile">Switch Neighbourhoods</a>
+              <li>
+                <a style="font-size:15px;" href="/logout">Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        {% else %}
+        <!-- <li> -->
+          <a style="font-size:15px;color: rgb(247, 243, 243);" href="/accounts/login">REGISTER/LOGIN</a>
+        <!-- </li> -->
+
+        {% endif %}
+
+      </div>
+
+
+
+      <!-- <li class="nav-item nav" style="margin-top:-5%;" >
+          <a class="nav-link" style="color: rgb(247, 15, 15);"><i class="fas fa-sign-out-alt" style='font-size:36px'></i></i></a>
+        </li> -->
+
+
+
+
+      <script>
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "250px";
+          document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("main").style.marginLeft = "0";
+        }
+      </script>
+    </div>
+  </div>
+</body>
+
+</html>
